@@ -34,6 +34,7 @@ const AdminRoute = ({ children }) => {
 };
 
 const Dashboard = () => {
+  const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('chat');
   const [documents, setDocuments] = useState([]);
   const [folders, setFolders] = useState([]);
@@ -245,7 +246,7 @@ const Dashboard = () => {
             My Library
           </button>
 
-          {useAuth().user?.is_admin && (
+          {user?.is_admin && (
             <Link
               to="/admin"
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-indigo-600 hover:bg-indigo-50 font-bold border border-indigo-100/50 shadow-sm"
@@ -351,7 +352,7 @@ const Dashboard = () => {
 
         <div className="p-4 border-t border-slate-100 mt-auto">
           <button
-            onClick={() => useAuth().logout()}
+            onClick={logout}
             className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all border border-transparent hover:border-red-100"
           >
             <X size={18} />
